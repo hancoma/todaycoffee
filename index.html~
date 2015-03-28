@@ -1,0 +1,798 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+    <head>
+    
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+        <meta name="author" content="webbuilder" />
+        <meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+		    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+
+
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+		
+
+        <link type="text/css" rel="stylesheet" href="css/demo2.css" />
+        
+        <link type="text/css" rel="stylesheet" href="css/jquery.mmenu.all.css" />
+ 
+
+            
+
+        <script type="text/javascript" src="js/jquery.min.js"></script>
+    
+        <script type="text/javascript" src="js/jquery.mmenu.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/PushNotification.js"></script>
+		<script type="text/javascript" src="js/camera.js"></script>
+        <script type="text/javascript" src="js/app.js"></script>
+
+            <script type="text/javascript" src="http://m.rococophoto.net/js/app.js"></script>
+         
+
+
+        <script type="text/javascript">
+     
+            $(function() {
+
+                $('nav#menu').mmenu();
+            });
+        </script>
+    <script type="text/javascript">
+
+            //  The menu on the left
+            $(function() {
+                $('nav#menu-left').mmenu();
+            });
+
+
+            //  The menu on the right
+            $(function() {
+
+                var $menu = $('nav#menu-right');
+
+                $menu.mmenu({
+                    position    : 'right',
+                    classes     : 'mm-light',
+                    dragOpen    : true,
+                    counters    : true,
+                    searchfield : true,
+                    labels      : {
+                        fixed       : !$.mmenu.support.touch
+                    },
+                    header      : {
+                        add         : true,
+                        update      : true,
+                        title       : 'Contacts'
+                    }
+                });
+
+                //  Click a menu-item
+                var $confirm = $('#confirmation');
+                $menu.find( 'li a' ).not( '.mm-subopen' ).not( '.mm-subclose' ).bind(
+                    'click.example',
+                    function( e )
+                    {
+                        e.preventDefault();
+                        $confirm.show().text( 'You clicked "' + $.trim( $(this).text() ) + '"' );
+                        $('#menu-right').trigger( 'close' );
+                    }
+                );
+            });
+    
+    
+    
+  
+ var pushNotification;
+
+            function onLoad() {
+				 document.addEventListener("deviceready", onDeviceReady, false);
+}
+ function onDeviceReady() {
+        // Register the event listener
+        var uuid=device.uuid;
+            // uuid 정리 
+
+           
+  
+pushNotification = window.plugins.pushNotification;
+
+
+
+
+    pushNotification.register(
+        successHandler,
+        errorHandler, {
+            "senderID":"3240193503",
+            "ecb":"onNotificationGCM"
+        });
+            
+        document.addEventListener("backbutton", function(e)
+    {
+   
+
+      navigator.app.backHistory();
+    
+    }, false);
+
+
+  document.addEventListener("menubutton", function(e)
+    {
+       
+
+ if (confirm('exit')) {
+        navigator.app.exitApp();
+    }
+         
+       }, false);
+
+
+ var success = function(status) {
+         navigator.notification.activityStop();
+        }
+
+        var error = function(status) {
+         navigator.notification.activityStop();
+        }
+navigator.notification.activityStart("RococoPhoto", "updating");
+        window.cache.clear( success, error );
+
+        
+      
+
+  check_uuid(uuid);
+ 
+ 
+    }
+
+  
+
+    
+
+
+
+ 
+  
+    
+
+
+
+	
+		</script>
+    </head>
+    
+    <body onload="onLoad()">
+   <div id="home" style="display:none;">
+    <div id="app-status-div">
+        <ul id="app-status-ul">
+            <li>Cordova PushNotification Plugin Demo</li>
+        </ul>
+    </div>
+    <div id="myDiv" name="myDiv"></div>
+</div>
+
+  
+  
+        <div id="page">
+            <div id="header">
+                <a href="#menu"></a>
+            RococoPhoto
+                
+                        <a href="#menu-right" class="friends right"></a>
+            </div>
+            <div id="content">
+            <!-- 매일 페이지 나오는 부분 -->
+		
+            
+        
+            </div>
+             <nav id="menu">
+                <ul >
+                                                        <li ><a href="around.html"  target="">
+                        <img alt="local icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn1.iconfinder.com/data/icons/google_jfk_icons_by_carlosjj/128/local.png"> 
+                        
+            Local</a>
+                        </li>
+                                        <li ><a href="global.html"  target="">
+                        <img alt="blue, browser, earth, global, globe, international, internet, planet, world icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn2.iconfinder.com/data/icons/Siena/128/globe%20blue.png">
+                        
+            Global</a>
+             
+                            <ul>
+                                                                <li><a href="global.html?sub_code=gbr"  target="">GBR</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=fr"  target="">France</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=gbr"  target="">Germany</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=it"  target="">Italy</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=es"  target="">Spain</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=at"  target="">Austria</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=nl"  target="">Netherlands</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=dk"  target="">Denmark</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=no"  target="">Norway</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=se"  target="">Sweden</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=fi"  target="">Finland</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=tr"  target="">Turkey</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=ru"  target="">Russia</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=jp"  target="">Japan</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=kr"  target="">Korea</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=cn"  target="">China</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=tw"  target="">Taiwan</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=in"  target="">India</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=th"  target="">Thailand</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=us"  target="">USA</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=ca"  target="">Canada</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=br"  target="">Brasil</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=mx"  target="">Maxico</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=ar"  target="">Argentina</a>
+                                                        
+                        </li>
+                                            <li><a href="global.html?sub_code=au"  target="">Australia</a>
+                                                        
+                        </li>
+                                    </ul>
+                            </li>
+                                        <li ><a href="match.html"  target="">
+                        <img alt="delete, photo icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn3.iconfinder.com/data/icons/fatcow/32x32_0700/photo_delete.png">
+                        
+            Matching</a>
+                        </li>
+                                        <li ><a href="talent.html"  target="">
+                        <img alt="in, love icon" class="tiled-icon" style="width: 20px; height: 20px;" src="icon/in_love.png">
+                        
+            Self Camera</a>
+             
+                            <ul>
+                                                                <li><a href="talent.html?cat=1"  target="">Face</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=2"  target="">Body</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=3"  target="">Home</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=4"  target="">Travel</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=5"  target="">Star Photo</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=6"  target="">Macho</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=7"  target="">Sliver</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=8"  target="">Bear</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=9"  target="">TG</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=10"  target="">Europe</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=11"  target="">Asia/Oceania</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=12"  target="">America</a>
+                                                        
+                        </li>
+                                            <li><a href="talent.html?cat=13"  target="">Africa</a>
+                                                        
+                        </li>
+                                    </ul>
+                            </li>
+                                        <li ><a href="loveletter.html"  target="">
+            <img alt="in, love icon" class="tiled-icon" style="width: 20px; height: 20px;" src="icon/loveletter.png">
+                        
+            LoveLetter</a>
+             
+                            <ul>
+                                                                <li><a href="loveletter.html?sub_code=1"  target="">GBR</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=2"  target="">France</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=3"  target="">Germany</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=4"  target="">Italy</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=5"  target="">Spain</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=6"  target="">Austria</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=7"  target="">Netherlands</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=8"  target="">Denmark</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=9"  target="">Norway</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=10"  target="">Sweden</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=11"  target="">Finland</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=12"  target="">Turkey</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=13"  target="">Russia</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=14"  target="">Japan</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=15"  target="">Korea</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=16"  target="">China</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=17"  target="">Taiwan</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=18"  target="">India</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=19"  target="">Thailand</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=20"  target="">USA</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=21"  target="">Canada</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=22"  target="">Brasil</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=23"  target="">Maxico</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=24"  target="">Argentina</a>
+                                                        
+                        </li>
+                                            <li><a href="loveletter.html?sub_code=25"  target="">Australia</a>
+                                                        
+                        </li>
+                                    </ul>
+                            </li>
+                                        <li ><a href="letdrive.html"  target="">
+            <img alt="award, best, bestseller, emblem, ribbon, seller, trophy icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn4.iconfinder.com/data/icons/pc_de_hamburg_icon_pack/32x32/bestseller.png">
+
+                        
+            Let's Drive</a>
+             
+                            <ul>
+                                                                <li><a href="letdrive.html?sub_code=1"  target="">GBR</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=2"  target="">France</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=3"  target="">Germany</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=4"  target="">Italy</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=5"  target="">Spain</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=6"  target="">Austria</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=7"  target="">Netherlands</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=8"  target="">Denmark</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=9"  target="">Norway</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=10"  target="">Sweden</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=11"  target="">Finland</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=12"  target="">Turkey</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=13"  target="">Russia</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=14"  target="">Japan</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=15"  target="">Korea</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=16"  target="">China</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=17"  target="">Taiwan</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=18"  target="">India</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=19"  target="">Thailand</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=20"  target="">USA</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=21"  target="">Canada</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=22"  target="">Brasil</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=23"  target="">Maxico</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=24"  target="">Argentina</a>
+                                                        
+                        </li>
+                                            <li><a href="letdrive.html?sub_code=25"  target="">Australia</a>
+                                                        
+                        </li>
+                                    </ul>
+                            </li>
+                                        <li ><a href="rank.html"  target="">
+                            <img alt="announcement, base, chat, chatter, colloquy, commune, communication, confabulate, conversation, converse, dangle, forum, gossip, information, interview, message, prattle, report, sms, statement, talk icon" class="tiled-icon"  src="https://cdn1.iconfinder.com/data/icons/professional-toolbar-icons-png/64/Chat.png" style="width: 20px; height: 20px;">
+                        
+            Rank</a>
+             
+                            <ul>
+                                                                <li><a href="rank.html?sub_code=1"  target="">GBR</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=2"  target="">France</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=3"  target="">Germany</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=4"  target="">Italy</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=5"  target="">Spain</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=6"  target="">Austria</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=7"  target="">Netherlands</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=8"  target="">Denmark</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=9"  target="">Norway</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=10"  target="">Sweden</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=11"  target="">Finland</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=12"  target="">Turkey</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=13"  target="">Russia</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=14"  target="">Japan</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=15"  target="">Korea</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=16"  target="">China</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=17"  target="">Taiwan</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=18"  target="">India</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=19"  target="">Thailand</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=20"  target="">USA</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=21"  target="">Canada</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=22"  target="">Brasil</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=23"  target="">Maxico</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=24"  target="">Argentina</a>
+                                                        
+                        </li>
+                                            <li><a href="rank.html?sub_code=25"  target="">Australia</a>
+                                                        
+                        </li>
+                                    </ul>
+                            </li>
+                                        <li ><a href="lovechat.html"  target="">
+                        <img alt="announcement, base, chat, chatter, colloquy, commune, communication, confabulate, conversation, converse, dangle, forum, gossip, information, interview, message, prattle, report, sms, statement, talk icon" class="tiled-icon"  src="https://cdn1.iconfinder.com/data/icons/professional-toolbar-icons-png/64/Chat.png" style="width: 20px; height: 20px;">
+                        
+            Love Chat</a>
+             
+                            <ul>
+                                                                <li><a href="lovechat.html?sub_code=1"  target="">GBR</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=2"  target="">France</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=3"  target="">Germany</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=4"  target="">Italy</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=5"  target="">Spain</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=6"  target="">Austria</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=7"  target="">Netherlands</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=8"  target="">Denmark</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=9"  target="">Norway</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=10"  target="">Sweden</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=11"  target="">Finland</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=12"  target="">Turkey</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=13"  target="">Russia</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=14"  target="">Japan</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=15"  target="">Korea</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=16"  target="">China</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=17"  target="">Taiwan</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=18"  target="">India</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=19"  target="">Thailand</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=20"  target="">USA</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=21"  target="">Canada</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=22"  target="">Brasil</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=23"  target="">Maxico</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=24"  target="">Argentina</a>
+                                                        
+                        </li>
+                                            <li><a href="lovechat.html?sub_code=25"  target="">Australia</a>
+                                                        
+                        </li>
+                                    </ul>
+                            </li>
+                                        <li ><a href="hopechat.html"  target="">
+                        <img alt="bookmark, favorite, star icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn0.iconfinder.com/data/icons/Natsu_PNG/128/Natsu-Fav.png">
+                        
+            Hope Chat</a>
+             
+                            <ul>
+                                                                <li><a href="hopechat.html?sub_code=1"  target="">GBR</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=2"  target="">France</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=3"  target="">Germany</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=4"  target="">Italy</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=5"  target="">Spain</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=6"  target="">Austria</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=7"  target="">Netherlands</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=8"  target="">Denmark</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=9"  target="">Norway</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=10"  target="">Sweden</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=11"  target="">Finland</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=12"  target="">Turkey</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=13"  target="">Russia</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=14"  target="">Japan</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=15"  target="">Korea</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=16"  target="">China</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=17"  target="">Taiwan</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=18"  target="">India</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=19"  target="">Thailand</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=20"  target="">USA</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=21"  target="">Canada</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=22"  target="">Brasil</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=23"  target="">Maxico</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=24"  target="">Argentina</a>
+                                                        
+                        </li>
+                                            <li><a href="hopechat.html?sub_code=25"  target="">Australia</a>
+                                                        
+                        </li>
+                                    </ul>
+                            </li>
+                                        <li ><a href="premium.html"  target="">
+                            <img alt="green, star icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn0.iconfinder.com/data/icons/sweets/128/green_star.png">
+                            
+            Premium</a>
+             
+                            <ul>
+                                                                <li><a href="premium.html"  target="">Premium1</a>
+                                                        
+                        </li>
+                                            <li><a href="premium2.html"  target="">Premium2</a>
+                                                        
+                        </li>
+                                            <li><a href="premium3.html"  target="">Premium3</a>
+                                                        
+                        </li>
+                                            <li><a href="premium4.html"  target="">Premium4</a>
+                                                        
+                        </li>
+                                    </ul>
+                            </li>
+                                        <li ><a href="http://rococophoto.net"  target="">
+                            <img alt="blue, star icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn0.iconfinder.com/data/icons/sweets/128/blue_star.png">
+                            
+            pc</a>
+                        </li>
+                                                
+
+                </ul>
+            </nav>
+ 
+           <nav id="menu-right">
+            <ul>
+                            <li><span><img alt="login icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn4.iconfinder.com/data/icons/munich/32x32/logout.png"><a  onclick="logout();"> <span id="rightmenu1">Logout</span></span></a></li>
+                <li><span><img alt="email, envelope, mail icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn4.iconfinder.com/data/icons/simplicio/128x128/mail.png"><a onclick="goHref('/?mod=chat_main&uid=');"><span id="rightmenu2">메시지함</a></span></li>     
+                <li><span><a onclick="goHref('/?mod=mypage&&amp;page=people3');"> <img alt="friends, group, people, persons, users icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn3.iconfinder.com/data/icons/developerkit/png/Users.png"><span id="rightmenu3">본 사람</span></a></span></li>     
+                <li><span><a onclick="goHref('/?mod=mypage&&amp;page=people');"><img alt="people, y icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn1.iconfinder.com/data/icons/all_google_icons_symbols_by_carlosjj-du/128/people-y.png"> <span id="rightmenu4">내가 찜한 친구</span></a></span></li>     
+                <li><span><a onclick="goHref('/?mod=mypage&&amp;page=people2');"><img alt="b, people icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn1.iconfinder.com/data/icons/all_google_icons_symbols_by_carlosjj-du/128/people-b.png"><span id="rightmenu5">나를 찜한 친구</span></a></span></li> 
+                <li><span><a onclick="goHref('/?mod=mypage&amp;page=simbol2');"><img alt="camera icon" class="tiled-icon" style="width: 20px; height: 20px;" src="icon/camera_icon.png"> <span id="rightmenu6">사진 등록</span></a></span></li>
+                <li><span><a onclick="goHref('/?mod=mypage&amp;page=info');"><img alt="document, edit, red icon" class="tiled-icon" style="width: 20px; height: 20px;" src="icon/pen.png"> <span id="rightmenu7">정보 수정</span></a></span></li>
+                <li><span><a onclick="goHref('/?mod=mypage&amp;page=pw');"><img alt="lock, locked, password, secure, security, unlock icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn4.iconfinder.com/data/icons/flat-icon-set/128/lock-icon.png"> <spam id="rightmenu8">비밀번호 변경</spam></a></span></li>
+                <li><span><a onclick="goHref('/?mod=mypage&amp;page=out');" ><img alt="delete, user icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn4.iconfinder.com/data/icons/simplicio/128x128/user_delete.png"> <span id="rightmenu9">회원탈퇴</span></a></span></li>
+                <li><span><a onclick="goHref('/?mod=help2');"><img alt="setup icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn4.iconfinder.com/data/icons/free-dark-blue-cloud-icons/96/Setup.png">  <span id="rightmenu10">프리미엄 서비스</span> </a></span></li>
+                <li><span><a onclick="goHref('/?mod=setup');"><img alt="setup icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn4.iconfinder.com/data/icons/free-dark-blue-cloud-icons/96/Setup.png"> <span id="rightmenu11">설정하기</a></span></li>
+                <li><span><a onclick="goHref('/?mod=setup2');"><img alt="premium, support icon" class="tiled-icon" style="width: 20px; height: 20px;" src="https://cdn0.iconfinder.com/data/icons/fatcow/32x32/premium_support.png"> <span id="rightmenu12">이용약관</span></a></span></li>
+                <li><span id="rightmenu0"></span></li>
+                </ul>
+            </nav>
+
+            
+
+        </div>
+test
+text
